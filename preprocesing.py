@@ -2,9 +2,14 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder
 
 
 def process(data):
+    columns_to_encode = ["mass_wrt", "radius_wrt", "detection_method", "discovery_year"]
+    for column in columns_to_encode:
+        le = LabelEncoder()
+        data[column] = le.fit_transform(data[column].astype(str))
     data.drop(columns={'name'}, inplace=True)
 
     data['discovery_year'] = data['discovery_year'].astype('category')
@@ -20,7 +25,7 @@ def process(data):
     scaled['radius_wrt'] = data['radius_wrt']
 
     train_X, test_X, train_Y, test_Y = train_test_split(scaled.to_numpy(), data['planet_type'],
-                                                        stratify=data['planet_type'], train_size=0.7)
+                                                        stratify=data['planet_type'], train_size=0.7, random_state=3000)
     val_X, test_X, val_Y, test_Y = train_test_split(test_X, test_Y,
-                                                        stratify=test_Y, train_size=0.5)
+                                                        stratify=test_Y, train_size=0.5, random_state=3000)
     return train_X, train_Y, test_X, test_Y, val_X, val_Y

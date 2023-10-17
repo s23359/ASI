@@ -1,12 +1,17 @@
+import os
+import shutil
+if not os.path.isdir('../.kaggle'):
+    os.mkdir('../.kaggle')
+if not os.path.isfile('../.kaggle/kaggle.json'):
+    shutil.copy("kaggle.json", "../.kaggle/kaggle.json")
 import kaggle as kaggle
 import pandas as pd
 
-
 def loadData():
-    data = pd.read_csv('/kaggle/input/nasaexoplanets/cleaned_5250.csv')
-
     kaggle.api.authenticate()
 
-    kaggle.api.dataset_download_files('mariajtalaka/exoplanets', path='',
-                                      unzip=True)
+    data = kaggle.api.dataset_download_files(
+        'adityamishraml/nasaexoplanets', path='datasets/kaggle', unzip=True)
+    
+    data = pd.read_csv('datasets/kaggle/cleaned_5250.csv')
     return data
