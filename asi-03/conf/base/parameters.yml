@@ -1,0 +1,7 @@
+model_params:
+  model: "random_forest"
+  name: "Random forest more estimators"
+  n_neighbors: 3
+  weights: "distance"
+  n_estimators: 150
+

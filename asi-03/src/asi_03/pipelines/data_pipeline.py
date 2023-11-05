@@ -25,7 +25,8 @@ train_node = node(
         "test_X": "test_X",
         "test_Y": "test_Y",
         "val_X": "val_X",
-        "val_Y": "val_Y"
+        "val_Y": "val_Y",
+        "model_params": "params:model_params"
     },
     outputs="model_output",
     name="train_node"
