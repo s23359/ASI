@@ -2,3 +2,30 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+# example_data_source:
+#   type: pandas.SQLTableDataSet
+#   table_name: exoplanets_asi
+#   credentials:
+#     driver: postgresql
+#     host: localhost
+#     port: 5432
+#     database: asi
+#     username: postgres
+#     password: admin
+
+
+# example_data_destination:
+#   type: pandas.SQLTableDataSet
+#   table_name: exoplanets_asi
+#   credentials:
+#     driver: postgresql
+#     host: localhost
+#     port: 5432
+#     database: asi
+#     username: postgres
+#     password: admin
+
+model_output:
+  type: pickle.PickleDataSet
+  filepath: data/08_reporting/predictor
