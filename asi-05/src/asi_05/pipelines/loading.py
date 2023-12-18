@@ -1,18 +1,32 @@
-import os
-import shutil
-
-if not os.path.isdir('../../.kaggle'):
-    os.mkdir('../../.kaggle')
-if not os.path.isfile('../../.kaggle/kaggle.json'):
-    shutil.copy("kaggle.json", "../../.kaggle/kaggle.json")
-import kaggle as kaggle
 import pandas as pd
+from kedro.config import ConfigLoader
+from pathlib import Path
+import psycopg2
 
 def loadData():
-    kaggle.api.authenticate()
+    # odczytanie credentials
+    conf_loader = ConfigLoader(conf_source=str(Path.cwd() / 'conf'))
+    credentials = conf_loader.get("local/credentials", "credentials.yml")
+    # Parametry połączenia z bazą danych
+    db_username = credentials["postgres"]["username"]
+    db_password = credentials["postgres"]["password"]
+    db_host = credentials["postgres"]["host"]
+    db_port = credentials["postgres"]["port"]
+    db_name = credentials["postgres"]["name"]
 
-    data = kaggle.api.dataset_download_files(
-        'adityamishraml/nasaexoplanets', path='data/01_raw', unzip=True)
+    # Łączenie z bazą danych
+    connection = psycopg2.connect(
+        dbname=db_name,
+        user=db_username,
+        password=db_password,
+        host=db_host,
+        port=db_port
+    )
+
+    # Wczytywanie danych z bazy danych do DataFrame
+    query = "SELECT * FROM exoplanets"
+    data = pd.read_sql(query, connection)
     
-    data = pd.read_csv('data/01_raw/cleaned_5250.csv')
+    # Zamykanie połączenia
+    connection.close()
     return data

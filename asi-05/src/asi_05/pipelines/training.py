@@ -13,6 +13,5 @@ def autogluonTraining(data):
 
     predictor = TabularPredictor(label='planet_type').fit(pd.DataFrame(train_X))
     predictions = predictor.predict(pd.DataFrame(test_X))
-
-    pickle.dump(predictions, open('model.sav', 'wb'))
-    print("Model successfully saved")
+    
+    return predictor

@@ -13,7 +13,7 @@ load_node = node(
 train_node = node(
     autogluonTraining,
     inputs="data",
-    outputs="model_output",
+    outputs="predictor_output",
     name="train_node"
 )
 
