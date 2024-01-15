@@ -3,13 +3,17 @@ from kedro.framework.startup import bootstrap_project
 from kedro.framework.session import KedroSession
 from pathlib import Path
 import requests
-
+import pandas
+from sdv.lite import SingleTablePreset
+from sdv.metadata import SingleTableMetadata
+from sdv.metadata import SingleTableMetadata
 
 # Załadowanie kontekstu Kedro
 project_path = Path.cwd()
 bootstrap_project(project_path)
 
 FASTAPI_ENDPOINT = "http://localhost:8000/predict"
+SYNTHETIC_DATA_SCRIPT = "main.py"
 
 with KedroSession.create(project_path) as session:
     st.title('Aplikacja Streamlit do Uruchamiania Potoków Kedro')
@@ -17,6 +21,20 @@ with KedroSession.create(project_path) as session:
     if st.button('Uruchom Potok Kedro'):
         session.run(pipeline_name="__default__")
         st.success('Potok został uruchomiony!')
+
+    if st.button('Wygeneruj dane syntetyczne'):
+        metadata = SingleTableMetadata()
+
+        real_data = pandas.read_csv('Z:\ASI\cleaned_5250.csv')
+        meta_data = metadata.detect_from_csv(filepath='Z:\ASI\cleaned_5250.csv')
+
+        synthesizer = SingleTablePreset(metadata, name='FAST_ML')
+        synthesizer.fit(data=real_data)
+
+        synthetic_data = synthesizer.sample(num_rows=500)
+
+        st.write('Informacje o danych syntetycznych:')
+        st.dataframe(synthetic_data)
 
     with st.form(key='predict_form'):
         name = st.text_input('name', value="")
