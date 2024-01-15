@@ -1,9 +1,11 @@
 import streamlit as st
 from kedro.framework.startup import bootstrap_project
 from kedro.framework.session import KedroSession
+from kedro.config import ConfigLoader
 from pathlib import Path
 import requests
-import pandas
+import pandas as pd
+import psycopg2
 from sdv.lite import SingleTablePreset
 from sdv.metadata import SingleTableMetadata
 from sdv.metadata import SingleTableMetadata
@@ -15,6 +17,9 @@ bootstrap_project(project_path)
 FASTAPI_ENDPOINT = "http://localhost:8000/predict"
 SYNTHETIC_DATA_SCRIPT = "main.py"
 
+conf_loader = ConfigLoader(conf_source=str(Path.cwd() / 'conf'))
+
+
 with KedroSession.create(project_path) as session:
     st.title('Aplikacja Streamlit do Uruchamiania Potoków Kedro')
 
@@ -25,8 +30,33 @@ with KedroSession.create(project_path) as session:
     if st.button('Wygeneruj dane syntetyczne'):
         metadata = SingleTableMetadata()
 
-        real_data = pandas.read_csv('Z:\ASI\cleaned_5250.csv')
-        meta_data = metadata.detect_from_csv(filepath='Z:\ASI\cleaned_5250.csv')
+        # odczytanie credentials
+        conf_loader = ConfigLoader(conf_source=str(Path.cwd() / 'conf'))
+        credentials = conf_loader.get("local/credentials", "credentials.yml")
+        # Parametry połączenia z bazą danych
+        db_username = credentials["postgres"]["username"]
+        db_password = credentials["postgres"]["password"]
+        db_host = credentials["postgres"]["host"]
+        db_port = credentials["postgres"]["port"]
+        db_name = credentials["postgres"]["name"]
+
+        # Łączenie z bazą danych
+        connection = psycopg2.connect(
+            dbname=db_name,
+            user=db_username,
+            password=db_password,
+            host=db_host,
+            port=db_port
+        )
+
+        # Wczytywanie danych z bazy danych do DataFrame
+        query = "SELECT * FROM exoplanets"
+        real_data = pd.read_sql(query, connection)
+
+        # Zamykanie połączenia
+        connection.close()
+
+        meta_data = metadata.detect_from_dataframe(real_data)
 
         synthesizer = SingleTablePreset(metadata, name='FAST_ML')
         synthesizer.fit(data=real_data)
