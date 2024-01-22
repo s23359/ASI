@@ -94,7 +94,7 @@ async def synthetic(request: Request):
         synthetic_data = synthesizer.sample(num_rows=100)
 
         with engine.connect() as connection:
-            sql = """CREATE TABLE synthetic_exoplanets (
+            sql = """CREATE TABLE IF NOT EXISTS synthetic_exoplanets (
                         id SERIAL PRIMARY KEY,
                         name VARCHAR(255),
                         distance DECIMAL,
