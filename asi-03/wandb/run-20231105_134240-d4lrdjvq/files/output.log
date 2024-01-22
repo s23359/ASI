@@ -1,0 +1,99 @@
+[34m[1mwandb[39m[22m:
+[34m[1mwandb[39m[22m: Plotting random_forest.
+[34m[1mwandb[39m[22m: Logged feature importances.
+[34m[1mwandb[39m[22m: Logged confusion matrix.
+[34m[1mwandb[39m[22m: [32m[41mERROR[39m[49m X contains values that are not numbers. Please vectorize, label encode or one hot encode X and call the plotting function again.
+[34m[1mwandb[39m[22m: [32m[41mERROR[39m[49m X_test contains values that are not numbers. Please vectorize, label encode or one hot encode X_test and call the plotting function again.
+[34m[1mwandb[39m[22m: Logged summary metrics.
+[34m[1mwandb[39m[22m: Logged class proportions.
+[34m[1mwandb[39m[22m: [32m[41mERROR[39m[49m X contains values that are not numbers. Please vectorize, label encode or one hot encode X and call the plotting function again.
+[34m[1mwandb[39m[22m: Logged calibration curve.
+[34m[1mwandb[39m[22m: [33mWARNING[39m wandb.plots.* functions are deprecated and will be removed in a future release. Please use wandb.plot.* instead.
+[34m[1mwandb[39m[22m: Logged roc curve.
+[34m[1mwandb[39m[22m: Logged precision-recall curve.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Scripts\kedro.exe\__main__.py", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\framework\cli\cli.py", line 211, in main
+    cli_collection()
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\click\core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\framework\cli\cli.py", line 139, in main
+    super().main(
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\click\core.py", line 1078, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\click\core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\click\core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\click\core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\framework\cli\project.py", line 453, in run
+    session.run(
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\framework\session\session.py", line 436, in run
+    run_result = runner.run(
+                 ^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\runner\runner.py", line 103, in run
+    self._run(pipeline, catalog, hook_manager, session_id)
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\runner\sequential_runner.py", line 70, in _run
+    run_node(node, catalog, hook_manager, self._is_async, session_id)
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\runner\runner.py", line 331, in run_node
+    node = _run_node_sequential(node, catalog, hook_manager, session_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\runner\runner.py", line 446, in _run_node_sequential
+    catalog.save(name, data)
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\io\data_catalog.py", line 543, in save
+    dataset.save(data)
+  File "C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\io\core.py", line 217, in save
+    raise DatasetError("Saving 'None' to a 'Dataset' is not allowed")
+kedro.io.core.DatasetError: Saving 'None' to a 'Dataset' is not allowed
+┌─────────────────────────────── Traceback (most recent call last) ────────────────────────────────┐
+│ in _run_module_as_main:198                                                                       │
+│ in _run_code:88                                                                                  │
+│                                                                                                  │
+│ in <module>:7                                                                                    │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\framework\cli\cli.py:211 in main │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\click\core.py:1157 in __call__         │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\framework\cli\cli.py:139 in main │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\click\core.py:1078 in main             │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\click\core.py:1688 in invoke           │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\click\core.py:1434 in invoke           │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\click\core.py:783 in invoke            │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\framework\cli\project.py:453 in  │
+│ run                                                                                              │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\framework\session\session.py:436 │
+│ in run                                                                                           │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\runner\runner.py:103 in run      │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\runner\sequential_runner.py:70   │
+│ in _run                                                                                          │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\runner\runner.py:331 in run_node │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\runner\runner.py:446 in          │
+│ _run_node_sequential                                                                             │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\io\data_catalog.py:543 in save   │
+│                                                                                                  │
+│ C:\Users\User\anaconda3\envs\asi-03_env\Lib\site-packages\kedro\io\core.py:217 in save           │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+DatasetError: Saving 'None' to a 'Dataset' is not allowed
+Model successfully saved

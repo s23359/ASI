@@ -30,6 +30,8 @@ with KedroSession.create(project_path) as session:
     if st.button('Wygeneruj dane syntetyczne'):
         metadata = SingleTableMetadata()
 
+        st.write(metadata)
+
         # odczytanie credentials
         conf_loader = ConfigLoader(conf_source=str(Path.cwd() / 'conf'))
         credentials = conf_loader.get("local/credentials", "credentials.yml")
@@ -62,6 +64,7 @@ with KedroSession.create(project_path) as session:
         synthesizer.fit(data=real_data)
 
         synthetic_data = synthesizer.sample(num_rows=500)
+        st.dataframe(real_data)
 
         st.write('Informacje o danych syntetycznych:')
         st.dataframe(synthetic_data)

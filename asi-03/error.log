@@ -1,0 +1,8 @@
+2023-11-04 15:27:46,522 - kedro.pipeline.node - ERROR - Node 'load_node: loadData(None) -> [intermediate_data]' failed with error: 
+'content-length'
+2023-11-04 15:29:25,101 - kedro.pipeline.node - ERROR - Node 'load_node: loadData(None) -> [intermediate_data]' failed with error: 
+'content-length'
+2023-11-05 13:26:48,302 - kedro.pipeline.node - ERROR - Node 'train_node: train([train_X,train_Y,test_X,test_Y,val_X,val_Y,params:model_params]) -> [model_output]' failed with error: 
+'numpy.ndarray' object has no attribute 'columns'
+2023-11-05 13:39:31,872 - kedro.pipeline.node - ERROR - Node 'train_node: train([train_X,train_Y,test_X,test_Y,val_X,val_Y,params:model_params]) -> [model_output]' failed with error: 
+predict_proba is not available when probability=False

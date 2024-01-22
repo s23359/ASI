@@ -1,0 +1,14 @@
+[34m[1mwandb[39m[22m:
+[34m[1mwandb[39m[22m: Plotting knn.
+[34m[1mwandb[39m[22m: [33mWARNING[39m could not find any of attributes feature_importances_, feature_log_prob_, coef_ on classifier. Cannot plot feature importances.
+[34m[1mwandb[39m[22m: Logged feature importances.
+[34m[1mwandb[39m[22m: Logged confusion matrix.
+[34m[1mwandb[39m[22m: [32m[41mERROR[39m[49m X contains values that are not numbers. Please vectorize, label encode or one hot encode X and call the plotting function again.
+[34m[1mwandb[39m[22m: [32m[41mERROR[39m[49m X_test contains values that are not numbers. Please vectorize, label encode or one hot encode X_test and call the plotting function again.
+[34m[1mwandb[39m[22m: Logged summary metrics.
+[34m[1mwandb[39m[22m: Logged class proportions.
+[34m[1mwandb[39m[22m: [32m[41mERROR[39m[49m X contains values that are not numbers. Please vectorize, label encode or one hot encode X and call the plotting function again.
+[34m[1mwandb[39m[22m: Logged calibration curve.
+[34m[1mwandb[39m[22m: [33mWARNING[39m wandb.plots.* functions are deprecated and will be removed in a future release. Please use wandb.plot.* instead.
+[34m[1mwandb[39m[22m: Logged roc curve.
+[34m[1mwandb[39m[22m: Logged precision-recall curve.
