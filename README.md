@@ -1,4 +1,4 @@
-# asi-07 (Baza danych, kedro, autogluon, streamlit, fastapi)
+# Lab No 13 (Baza danych, kedro, autogluon, streamlit, fastapi, generowanie danych syntetycznych)
 
 ## Zaktualizuj plik credentials.yml (w katalogu conf/local) danymi do swojej bazy danych postgres
 
