@@ -1,9 +1,11 @@
 import streamlit as st
+import pandas as pd
 from pathlib import Path
 import requests
 
 PREDICT = "http://localhost:8000/predict"
 RUN = "http://localhost:8000/run"
+SYNTHETIC = "http://localhost:8000/synthetic"
 
 st.title('Aplikacja Streamlit do Uruchamiania Potoków Kedro')
 
@@ -11,9 +13,20 @@ if st.button('Uruchom Potok Kedro'):
     response = requests.get(RUN)
     st.success('Potok został uruchomiony!')
     if response.status_code == 200:
-        st.success('Potok został uruchomiony!')
+        st.success('Potok został wykonany!')
     else:
         st.error("Błąd podczas wykonywania uruchamiania potoku")
+
+if st.button('Wygeneruj dane syntetyczne'):
+    response = requests.get(SYNTHETIC)
+    if response.status_code == 200:
+        st.success('Poprawnie wygenerowano dane!')
+        data = response.json()
+        synthetic_data = pd.read_json(data['synthetic'])
+        st.dataframe(synthetic_data)
+    else:
+        st.error('Nie udało się wygenerować danych!')
+        st.write(response)
 
 with st.form(key='predict_form'):
     name = st.text_input('name', value="")
