@@ -1,4 +1,4 @@
-# Lab No 13 (Baza danych, kedro, autogluon, streamlit, fastapi, generowanie danych syntetycznych)
+# Projekt ASI
 
 ## Zaktualizuj plik credentials.yml (w katalogu conf/local) danymi do swojej bazy danych postgres
 
@@ -25,21 +25,21 @@ a następnie uruchomić środowisko za pomocą
 conda activate python39
 ```
 
-## Jak uruchomić streamlit a następnie fastapi? 
+## Jak uruchomić projekt? 
 
-Aby uruchomić streamlit i fastapi należy wykonać komendy 
+Aby uruchomić streamlit należy wykonać: 
 
 ```
 streamlit run streamlit_app.py
 ```
 
-po uruchomieniu i wykonaniu potoku w streamlit należy wykonać 
+Aby móc uruchomić potok, wygenerować dane syntetyczne lub dokonać predykcji należy wykonać: 
 
 ```
 uvicorn app:app
 ```
 
-## Jeżeli twoja baza danych nie zawiera tabeli exoplanets wykonaj skrypt create_table.sql lub tabela jest pusta
+## Jeżeli twoja baza danych nie zawiera tabeli exoplanets wykonaj skrypt create_table.sql lub jeżeli tabela jest pusta
 
 Utworzenie tabeli
 ```
@@ -51,3 +51,18 @@ Zasilenie bazy danych danymi po wcześniejszym polaczeniu sie z baza danych post
 ```
 \copy exoplanets FROM '/ścieżka/do/pliku/cleaned_5250.csv' DELIMITER ',' CSV HEADER
 ```
+
+## Użyte technologie
+
+```
+Streamlit
+FastAPI
+Kedro
+Autogluon
+Postgresql
+Wandb
+```
+
+## Architektura
+
+![architektura](<dokumentacja/ASI_architektura.jpg>)
